@@ -17,6 +17,10 @@ main(int argc, char** argv)
      double avgA=0;
      double avgB=0;
 
+     double normA=0;
+     double normB=0;
+
+
      int count=0;
      double max=0;
      int max_loc=-1;
@@ -51,6 +55,9 @@ main(int argc, char** argv)
 
 	  avgA += af;
 	  avgB += bf;
+
+          normA += af*af;
+          normB += bf*bf;
 
 	  if (fabs(af - bf) > max)
 	  {
@@ -88,6 +95,11 @@ main(int argc, char** argv)
 
      printf("\n");
      
+     printf("L2-norm of A: %.15g\n", sqrt(normA));
+     printf("L2-norm of B: %.15g\n", sqrt(normB));
+
+     printf("\n");
+
      printf("average A value: %.15g\n", avgA/count);
      printf("average B value: %.15g\n", avgB/count);
 
@@ -97,3 +109,7 @@ main(int argc, char** argv)
 
      return 0;
 }
+
+/* Local Variables: */
+/* compile-command: "gcc -Wall -O3 ndiff.c -o numdiff -lm" */
+/* End: */
