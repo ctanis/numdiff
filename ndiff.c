@@ -24,6 +24,7 @@ main(int argc, char** argv)
      int count=0;
      double max=0;
      int max_loc=-1;
+     double max_rel;
 
      if (argc != 3)
      {
@@ -62,6 +63,7 @@ main(int argc, char** argv)
 	  if (fabs(af - bf) > max)
 	  {
 	       max = fabs(af-bf);
+               max_rel = max/(fabs(af) < fabs(bf) ? fabs(af) : fabs(bf));
 	       max_loc = count;
 	  }
 
@@ -103,8 +105,11 @@ main(int argc, char** argv)
      printf("average A value: %.15g\n", avgA/count);
      printf("average B value: %.15g\n", avgB/count);
 
-     printf("rms, relative to A: %.15g\n", sqrt(rms_relA)/count);
-     printf("rms, relative to B: %.15g\n", sqrt(rms_relB)/count);
+     /* printf("rms, relative to A: %.15g\n", sqrt(rms_relA)/count); */
+     /* printf("rms, relative to B: %.15g\n", sqrt(rms_relB)/count); */
+     printf("relative error at location : %.15g\n", max_rel);
+     printf("max, relative to A: %.15g\n", max/(sqrt(normA/count)));
+     printf("max, relative to B: %.15g\n", max/(sqrt(normB/count)));
 
 
      return 0;
